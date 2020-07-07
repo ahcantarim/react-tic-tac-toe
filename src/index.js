@@ -5,7 +5,7 @@ import './index.css';
 function Square(props) {
     return (
         <button
-            className="square"
+            className={`cell cell--${props.index + 1}`}
             onClick={props.onClick}
         >
             {props.value}
@@ -17,6 +17,7 @@ class Board extends React.Component {
     renderSquare(i) {
         return (
             <Square
+                index={i}
                 value={this.props.squares[i]}
                 onClick={() => this.props.onClick(i)}
             />
@@ -24,23 +25,15 @@ class Board extends React.Component {
     }
 
     render() {
+        let rows = [];
+
+        for (let i = 0; i < 9; i++) {
+            rows.push(i)
+        }
+
         return (
-            <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
+            <div className="board">
+                {rows.map(index => this.renderSquare(index))}
             </div>
         );
     }
@@ -93,8 +86,8 @@ class Game extends React.Component {
 
         const moves = history.map((step, move) => {
             const desc = move ?
-                `Go to move #${move}` :
-                'Go to game start';
+                `Ir para o movimento #${move}` :
+                'Ir para o início do jogo';
 
             return (
                 <li key={move}>
@@ -105,24 +98,26 @@ class Game extends React.Component {
 
         let status;
         if (winner) {
-            status = `Winner ${winner}`;
+            status = `Ganhador: ${winner}`;
         } else {
-            status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+            status = `Jogador atual: ${this.state.xIsNext ? 'X' : 'O'}`;
         }
 
         return (
-            <div className="game">
-                <div className="game-board">
-                    <Board
-                        squares={current.squares}
-                        onClick={(i) => this.handleClick(i)}
-                    />
+            <>
+                <div className="game">
+                    <div className="game-board">
+                        <Board
+                            squares={current.squares}
+                            onClick={(i) => this.handleClick(i)}
+                        />
+                    </div>
+                    <div className="game-info">
+                        <div>{status}</div>
+                        <ol>{moves}</ol>
+                    </div>
                 </div>
-                <div className="game-info">
-                    <div>{status}</div>
-                    <ol>{moves}</ol>
-                </div>
-            </div>
+            </>
         );
     }
 }
