@@ -18,8 +18,6 @@
     Jogo da velha utilizando ReactJS.
     <br />
     <br />
-    <a href="[CONST_DEMO_URL]">Ver demonstração</a>
-    ·
     <a href="https://github.com/ahcantarim/react-tic-tac-toe/issues">Ver problemas abertos</a>
     ·
     <a href="https://github.com/ahcantarim/react-tic-tac-toe/issues/new">Reportar um problema</a>
