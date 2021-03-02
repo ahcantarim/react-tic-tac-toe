@@ -57,7 +57,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre este projeto
 
-<!-- [![Screenshot][product-screenshot]][product-screenshot] -->
+[![Screenshot][product-screenshot]][product-screenshot]
 
 Este projeto foi baseado na documentação oficial de ReactJS.
 
